@@ -1,13 +1,15 @@
 import sys
-from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+
 import qdarkstyle
 
-form_class = uic.loadUiType("design_main.ui")[0]
+# load qt designer ui file
+FormClass, QtBaseClass = uic.loadUiType("design_main.ui")
 
 
-class MainWindow(QMainWindow, form_class):
+# main window class
+class MainWindow(QMainWindow, FormClass):
     def __init__(self):
         super().__init__()
 
@@ -18,10 +20,6 @@ class MainWindow(QMainWindow, form_class):
     def _apply_style(self):
         # setup stylesheet
         self.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
-
-        # font
-        default_font = QtGui.QFont('lib/fonts/NotoSansCJKkr-Regular.otf')
-        self.setFont(default_font)
 
 
 if __name__ == '__main__':
